@@ -6,7 +6,7 @@
 /*   By: amehmeto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/28 18:57:39 by amehmeto          #+#    #+#             */
-/*   Updated: 2017/05/28 20:32:04 by amehmeto         ###   ########.fr       */
+/*   Updated: 2017/05/28 21:18:10 by amehmeto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,20 +93,12 @@ static void		find_factor(mpz_t n, size_t limit)
 	mpz_clears(p, q, NULL);
 }
 
-static void		ft_factrace(size_t limit)
+static void		ft_factrace(size_t limit, char *str, int nb_n)
 {
-	char	str[51000];
-	int		nb_n;
 	int		i;
 	mpz_t	n;
 
-	nb_n = 0;
 	mpz_init(n);
-	i = -1;
-	while (read(0, &str, 50000) > 0)
-		while (str[++i])
-			if (str[i] == '\n')
-				nb_n++;
 	limit = ft_strlen_and_limit_gen(NULL, 1, limit, nb_n);
 	i = -1;
 	while (str[++i])
@@ -127,7 +119,19 @@ static void		ft_factrace(size_t limit)
 
 int				main(int ac, char **av)
 {
+	char	str[51000];
+	int		nb_n;
+	int		i;
+
+	nb_n = 0;
 	if (ac == 2)
-		ft_factrace((size_t)atoi(av[1]));
+	{
+		i = -1;
+		while (read(0, &str, 50000) > 0)
+			while (str[++i])
+				if (str[i] == '\n')
+					nb_n++;
+		ft_factrace((size_t)atoi(av[1]), str, nb_n);
+	}
 	return (0);
 }
