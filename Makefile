@@ -7,11 +7,11 @@ OBJ_PATH =  obj/
 CC = clang
 
 W_FLAGS = -Werror -Wall -Wextra
-I_FLAGS = -I ./includes
+I_FLAGS = -Iincludes
 
 SRC = $(addprefix $(SRC_PATH),$(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH),$(OBJ_NAME))
-LIB = libgmp.dylib
+LIB = -Llib -lgmp -Wl,-no_pie
 
 all: $(NAME)
 
